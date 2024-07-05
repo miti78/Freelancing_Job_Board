@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace Freelancing_Job_Board.User
 {
@@ -11,7 +7,49 @@ namespace Freelancing_Job_Board.User
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                UpdateButtons();
+            }
+        }
 
+        private void UpdateButtons()
+        {
+            if (Session["user"] != null)
+            {
+                lbRegisterOrProfile.Text = "Profile";
+                lblLoginOrLogout.Text = "LogOut";
+            }
+            else
+            {
+                lbRegisterOrProfile.Text = "Register";
+                lblLoginOrLogout.Text = "Login";
+            }
+        }
+
+        protected void lbRegisterOrProfile_Click(object sender, EventArgs e)
+        {
+            if (lbRegisterOrProfile.Text == "Profile")
+            {
+                Response.Redirect("Profile.aspx");
+            }
+            else
+            {
+                Response.Redirect("Register.aspx");
+            }
+        }
+
+        protected void lblLoginOrLogout_Click(object sender, EventArgs e)
+        {
+            if (lblLoginOrLogout.Text == "Login")
+            {
+                Response.Redirect("Login.aspx");
+            }
+            else
+            {
+                Session.Abandon();
+                Response.Redirect("LogOut.aspx");
+            }
         }
     }
 }

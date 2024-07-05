@@ -12,7 +12,15 @@
   -ms-flex-pack: start;
   justify-content: start;
 }
-
+.clickLink a{
+    color:Highlight;
+    font-family:"Barlow",'Sans Serif Collection';
+    font-weight:500;
+    font-size:15px;
+}
+.clickLink a:hover{
+    color:#fb246a;
+}
 /* Normal desktop :1200px. */
 /* Normal desktop :992px. */
 /* Tablet desktop :768px. */
