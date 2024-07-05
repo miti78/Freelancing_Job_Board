@@ -1,0 +1,20 @@
+Create table Jobs(
+JobId int primary key identity(1,1),
+Title varchar(50),
+NoOfPost int,
+Description varchar(MAX),
+Qualification varchar(50),
+Experience varchar(50),
+Specialization varchar(MAX),
+LastDateToApply Date,
+Salary varchar(50),
+JobType varchar(50),
+CompanyName varchar(200),
+CompanyImage varchar(500),
+Website varchar(100),
+Email varchar(100),
+Address varchar(MAX),
+Country varchar(50),
+State varchar(50),
+CreateDate datetime
+)
