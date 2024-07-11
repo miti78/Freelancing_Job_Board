@@ -476,6 +476,10 @@
     <Content Include="css\style.css" />
     <Content Include="css\theme-default.css" />
     <Content Include="css\themify-icons.css" />
+    <Content Include="db\Contact.sql" />
+    <Content Include="db\Country.sql" />
+    <Content Include="db\Jobs.sql" />
+    <Content Include="db\User.sql" />
     <Content Include="fonts\fa-brands-400.svg" />
     <Content Include="fonts\fa-regular-400.svg" />
     <Content Include="fonts\fa-solid-900.svg" />
@@ -637,7 +641,9 @@
     <Content Include="User\Elements.aspx" />
     <Content Include="User\Job_Details.aspx" />
     <Content Include="User\Login.aspx" />
+    <Content Include="User\Profile.aspx" />
     <Content Include="User\Registration.aspx" />
+    <Content Include="User\ResumeBuild.aspx" />
     <Content Include="User\single-blog.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -744,12 +750,26 @@
     <Compile Include="User\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="User\Profile.aspx.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\Profile.aspx.designer.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+    </Compile>
     <Compile Include="User\Registration.aspx.cs">
       <DependentUpon>Registration.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="User\Registration.aspx.designer.cs">
       <DependentUpon>Registration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User\ResumeBuild.aspx.cs">
+      <DependentUpon>ResumeBuild.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\ResumeBuild.aspx.designer.cs">
+      <DependentUpon>ResumeBuild.aspx</DependentUpon>
     </Compile>
     <Compile Include="User\single-blog.aspx.cs">
       <DependentUpon>single-blog.aspx</DependentUpon>
@@ -765,6 +785,7 @@
     <Compile Include="User\UserMaster.Master.designer.cs">
       <DependentUpon>UserMaster.Master</DependentUpon>
     </Compile>
+    <Compile Include="Utils.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\candidates.map" />
