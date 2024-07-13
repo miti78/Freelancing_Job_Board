@@ -52,17 +52,29 @@ namespace Freelancing_Job_Board.User
 
         protected void dlProfile_ItemCommand(object source, DataListCommandEventArgs e)
         {
-            if (e.CommandName == "EditUserProfile")
+            Response.Write("<script>alert('Ashe');</script>");
+            if (e.CommandName.Equals("EditUserProfile"))
             {
+
                 string username = e.CommandArgument.ToString();
                 Session["Username"] = username; // Set the session variable
                 Response.Redirect($"ResumeBuild.aspx?username={username}", false); // Ensure false to avoid thread abort exception
+            }
+            else
+            {
+                // Code to delete user profile
+            }
+            // ... other command handlers
+            if (e.CommandName == "EditProfile")
+            {
+                string username = e.CommandArgument.ToString();
+                Session["Username"] = username; // Set the session variable
+                Response.Redirect("Element.aspx", false); // Ensure false to avoid thread abort exception
             }
             else if (e.CommandName == "Delete")
             {
                 // Code to delete user profile
             }
-            // ... other command handlers
         }
     }
 }

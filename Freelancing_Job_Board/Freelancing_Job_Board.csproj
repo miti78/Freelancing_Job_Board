@@ -69,8 +69,11 @@
   <ItemGroup>
     <Content Include="Admin\ContactList.aspx" />
     <Content Include="Admin\Dashboard.aspx" />
+    <Content Include="Admin\DownloadResume.aspx" />
     <Content Include="Admin\JobList.aspx" />
     <Content Include="Admin\NewJob.aspx" />
+    <Content Include="Admin\ViewResumeDetails.aspx" />
+    <Content Include="Admin\ViewResume.aspx" />
     <Content Include="assets\css\bootstrap.min.css" />
     <Content Include="assets\css\demo.css" />
     <Content Include="assets\css\fonts.css" />
@@ -492,6 +495,8 @@
     <Content Include="Global.asax" />
     <Content Include="Images\arashmil.jpg" />
     <Content Include="Images\favicon.ico" />
+    <Content Include="Images\th.jpg" />
+    <Content Include="Images\tr.png" />
     <Content Include="img\about\about.png" />
     <Content Include="img\about\about_big.png" />
     <Content Include="img\about\counter.png" />
@@ -601,6 +606,8 @@
     <Content Include="img\svg_icon\4.svg" />
     <Content Include="img\svg_icon\5.svg" />
     <Content Include="img\svg_icon\6.svg" />
+    <Content Include="img\svg_icon\th.jpg" />
+    <Content Include="img\svg_icon\tr.png" />
     <Content Include="img\testmonial\author.png" />
     <Content Include="js\ajax-form.js" />
     <Content Include="js\bootstrap.min.js" />
@@ -632,6 +639,7 @@
     <Content Include="maps\jsvectormap.html" />
     <Content Include="tables\datatables.html" />
     <Content Include="tables\tables.html" />
+    <Content Include="tr.png" />
     <Content Include="User\About.aspx" />
     <Content Include="User\blog.aspx" />
     <Content Include="User\BrowseJob.aspx" />
@@ -669,6 +677,13 @@
     <Compile Include="Admin\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\DownloadResume.aspx.cs">
+      <DependentUpon>DownloadResume.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\DownloadResume.aspx.designer.cs">
+      <DependentUpon>DownloadResume.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\JobList.aspx.cs">
       <DependentUpon>JobList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -682,6 +697,20 @@
     </Compile>
     <Compile Include="Admin\NewJob.aspx.designer.cs">
       <DependentUpon>NewJob.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ViewResumeDetails.aspx.cs">
+      <DependentUpon>ViewResumeDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ViewResumeDetails.aspx.designer.cs">
+      <DependentUpon>ViewResumeDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ViewResume.aspx.cs">
+      <DependentUpon>ViewResume.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ViewResume.aspx.designer.cs">
+      <DependentUpon>ViewResume.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -703,7 +732,6 @@
     </Compile>
     <Compile Include="User\BrowseJob.aspx.cs">
       <DependentUpon>BrowseJob.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="User\BrowseJob.aspx.designer.cs">
       <DependentUpon>BrowseJob.aspx</DependentUpon>
@@ -876,6 +904,7 @@
     <Content Include="scss\_team.scss" />
     <Content Include="scss\_testmonial.scss" />
     <Content Include="scss\_varriable.scss" />
+    <Content Include="Resumes\Section C %281%29.pdf" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -884,6 +913,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Admin\Resumes\" />
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
   </ItemGroup>

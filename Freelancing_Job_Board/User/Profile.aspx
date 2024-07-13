@@ -7,16 +7,16 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="bradcam_area bradcam_bg_1">
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-12">
-                <div class="bradcam_text">
-                    <h3>Candidates</h3>
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text">
+                        <h3>Candidates</h3>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
     <div class="container pt-5 pb-5">
         <div class="main-body">
             <asp:DataList ID="dlProfile" runat="server" Width="100%" OnItemCommand="dlProfile_ItemCommand">
@@ -95,8 +95,11 @@
                                     <hr />
                                     <div class="row">
                                         <div class="col-sm-12">
-                                            <asp:Button ID="btnEdit" runat="server" Text="Edit" CssClass="button button-contactForm boxed-btn" CommandName="EditUserProfile" CommandArgument='<%# Eval("Username") %>' />
+                                            <asp:Button ID="btnEditUserProfile" runat="server" Text="Edit Profile" CssClass="button button-contactForm boxed-btn" CommandName="EditUserProfile" CommandArgument='<%# Eval("Username") %>' />
                                         </div>
+                                        <%--<div class="col-sm-12">
+                                            <asp:Button ID="btnEditProfile" runat="server" Text="Edit" CssClass="button button-contactForm boxed-btn" CommandName="EditProfile" CommandArgument='<%# Eval("Username") %>' />
+                                        </div>--%>
                                     </div>
                                 </div>
                             </div>

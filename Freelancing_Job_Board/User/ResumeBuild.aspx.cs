@@ -1,6 +1,9 @@
-﻿using System;
+﻿
+
+using System;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.IO;
 using System.Web.UI.WebControls;
 
 namespace Freelancing_Job_Board.User
@@ -12,7 +15,6 @@ namespace Freelancing_Job_Board.User
         protected void Page_Load(object sender, EventArgs e)
         {
             connectionString = ConfigurationManager.ConnectionStrings["Freelancing_Job_BoardConnectionString"].ConnectionString;
-            System.Diagnostics.Debug.WriteLine("Connection String: " + connectionString);
 
             if (!IsPostBack)
             {
@@ -34,7 +36,7 @@ namespace Freelancing_Job_Board.User
                     Response.Redirect("ResumeBuild.aspx");
                 }
 
-                // Now use 'username' for further operations like loading user data
+                // Load user data
                 LoadUserData(username);
             }
         }
@@ -74,23 +76,36 @@ namespace Freelancing_Job_Board.User
                     SqlDataReader rdr = cmd.ExecuteReader();
                     if (rdr.Read())
                     {
-                        txtFullName.Text = rdr["FullName"].ToString();
+                        txtFullName.Text = rdr["Name"].ToString();
                         txtUserName.Text = username; // Set username if needed
                         txtAddress.Text = rdr["Address"].ToString();
                         txtMobile.Text = rdr["Mobile"].ToString();
                         txtEmail.Text = rdr["Email"].ToString();
                         ddlCountry.SelectedValue = rdr["Country"].ToString();
-                        txtTenth.Text = rdr["TenthPercentage"].ToString();
-                        txtTwelve.Text = rdr["TwelvePercentage"].ToString();
-                        txtGraduation.Text = rdr["GraduationCGPA"].ToString();
-                        txtWork.Text = rdr["JobProfile"].ToString();
-                        txtExperience.Text = rdr["WorkExperience"].ToString();
+                        txtTenth.Text = rdr["SSC_Result"].ToString();
+                        txtTwelve.Text = rdr["HSC_Result"].ToString();
+                        txtGraduation.Text = rdr["GraduationGrade"].ToString();
+                        txtWork.Text = rdr["WorksOn"].ToString();
+                        txtExperience.Text = rdr["Experience"].ToString();
+
+                        // Handle resume status (not downloading)
+                        if (rdr["Resume"] != DBNull.Value)
+                        {
+                            lblResumeLink.Text = "Resume uploaded.";
+                            lblResumeLink.Visible = true;
+                        }
+                        else
+                        {
+                            lblResumeLink.Text = "No resume uploaded.";
+                            lblResumeLink.Visible = true;
+                        }
                     }
                 }
             }
             catch (Exception ex)
             {
                 lblMsg.Text = "Error loading user data: " + ex.Message;
+                lblMsg.CssClass = "alert alert-danger";
                 lblMsg.Visible = true;
             }
         }
@@ -99,20 +114,42 @@ namespace Freelancing_Job_Board.User
         {
             try
             {
+                string resumeFileContent = null;
+
+                if (fuResume.HasFile)
+                {
+                    // Read the file content and convert it to base64 string
+                    using (Stream fileStream = fuResume.PostedFile.InputStream)
+                    {
+                        using (BinaryReader binaryReader = new BinaryReader(fileStream))
+                        {
+                            byte[] fileBytes = binaryReader.ReadBytes((int)fileStream.Length);
+                            resumeFileContent = Convert.ToBase64String(fileBytes);
+                        }
+                    }
+                }
+
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
-                    SqlCommand cmd = new SqlCommand("UPDATE [User] SET FullName = @FullName, Address = @Address, Mobile = @Mobile, Email = @Email, Country = @Country, TenthPercentage = @TenthPercentage, TwelvePercentage = @TwelvePercentage, GraduationCGPA = @GraduationCGPA, JobProfile = @JobProfile, WorkExperience = @WorkExperience WHERE Username = @Username", con);
+                    string query = @"UPDATE [User] 
+                             SET Name = @Name, Address = @Address, Mobile = @Mobile, Email = @Email, Country = @Country, 
+                                 SSC_Result = @SSC_Result, HSC_Result = @HSC_Result, GraduationGrade = @GraduationGrade, 
+                                 WorksOn = @WorksOn, Experience = @Experience, Resume = @Resume 
+                             WHERE Username = @Username";
+
+                    SqlCommand cmd = new SqlCommand(query, con);
                     cmd.Parameters.AddWithValue("@Username", txtUserName.Text);
-                    cmd.Parameters.AddWithValue("@FullName", txtFullName.Text);
+                    cmd.Parameters.AddWithValue("@Name", txtFullName.Text);
                     cmd.Parameters.AddWithValue("@Address", txtAddress.Text);
                     cmd.Parameters.AddWithValue("@Mobile", txtMobile.Text);
                     cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
                     cmd.Parameters.AddWithValue("@Country", ddlCountry.SelectedValue);
-                    cmd.Parameters.AddWithValue("@TenthPercentage", txtTenth.Text);
-                    cmd.Parameters.AddWithValue("@TwelvePercentage", txtTwelve.Text);
-                    cmd.Parameters.AddWithValue("@GraduationCGPA", txtGraduation.Text);
-                    cmd.Parameters.AddWithValue("@JobProfile", txtWork.Text);
-                    cmd.Parameters.AddWithValue("@WorkExperience", txtExperience.Text);
+                    cmd.Parameters.AddWithValue("@SSC_Result", txtTenth.Text);
+                    cmd.Parameters.AddWithValue("@HSC_Result", txtTwelve.Text);
+                    cmd.Parameters.AddWithValue("@GraduationGrade", txtGraduation.Text);
+                    cmd.Parameters.AddWithValue("@WorksOn", txtWork.Text);
+                    cmd.Parameters.AddWithValue("@Experience", txtExperience.Text);
+                    cmd.Parameters.AddWithValue("@Resume", (object)resumeFileContent ?? DBNull.Value);
 
                     con.Open();
                     int rowsAffected = cmd.ExecuteNonQuery();
@@ -120,18 +157,23 @@ namespace Freelancing_Job_Board.User
                     if (rowsAffected > 0)
                     {
                         lblMsg.Text = "Profile updated successfully!";
+                        lblMsg.CssClass = "alert alert-success";
                         lblMsg.Visible = true;
                     }
                     else
                     {
                         lblMsg.Text = "Failed to update profile.";
+                        lblMsg.CssClass = "alert alert-danger";
                         lblMsg.Visible = true;
                     }
                 }
             }
             catch (Exception ex)
             {
+                // Log and display error
+                System.Diagnostics.Debug.WriteLine("Exception details: " + ex.ToString());
                 lblMsg.Text = "Error updating user data: " + ex.Message;
+                lblMsg.CssClass = "alert alert-danger";
                 lblMsg.Visible = true;
             }
         }

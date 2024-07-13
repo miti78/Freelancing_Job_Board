@@ -35,7 +35,7 @@ namespace Freelancing_Job_Board.User
             }
             else
             {
-                Response.Redirect("Register.aspx");
+                Response.Redirect("Registration.aspx");
             }
         }
 

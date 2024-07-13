@@ -53,7 +53,7 @@
                             </div>
                             <div class="form-group mt-3">
                                 <asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="button button-contactForm btn_4 boxed-btn" OnClick="btnLogin_Click" />
-                                <span class="ClickLink ml-5"> <a href="../User/Register.aspx">  New user? Click Here....</a>></span>
+                                <span class="ClickLink ml-5"> <a href="../User/Registration.aspx">  New user? Click Here....</a>></span>
 
                             </div>
                         </div>

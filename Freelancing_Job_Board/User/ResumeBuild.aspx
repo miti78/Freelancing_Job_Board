@@ -3,22 +3,27 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-        <div class="bradcam_area bradcam_bg_1">
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-12">
-                <div class="bradcam_text">
-                    <h3>Candidates</h3>
+    <div class="bradcam_area bradcam_bg_1">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text">
+                        <h3>Candidates</h3>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
     <section>
         <div class="container pt-50 pb-40">
             <div class="row">
                 <div class="col-12 pb-20">
                     <asp:Label ID="lblMsg" runat="server" Visible="false"></asp:Label>
+                    <asp:Label ID="Label1" runat="server" CssClass="alert" Visible="false"></asp:Label>
+<asp:Label ID="lblResumeLink" runat="server" Visible="false"></asp:Label>
+<asp:FileUpload ID="FileUpload1" runat="server" />
+<asp:Button ID="Button1" runat="server" Text="Update" OnClick="btnUpdate_Click" />
+
                 </div>
                 <div class="col-12">
                     <h2 class="contact-title text-center">Build Resume</h2>
@@ -101,7 +106,7 @@
                             <div class="col-md-6 col-sm-12">
                                 <div class="form-group">
                                     <label>Resume</label>
-<asp:FileUpload ID="fuResume" runat="server" CssClass="form-control pt-2" ToolTips=".doc, .docx, .pdf extension only" />
+                                    <asp:FileUpload ID="fuResume" runat="server" CssClass="form-control pt-2" ToolTips=".doc, .docx, .pdf extension only" />
                                 </div>
                             </div>
                         </div>

@@ -78,7 +78,6 @@
                                     <a class="boxed-btn3" href="Registration.aspx">Sign Up</a>
                                 </div>--%>
                                 <asp:LinkButton ID="lbRegisterOrProfile" CssClass="btn head-btn1" runat="server" OnClick="lbRegisterOrProfile_Click" CausesValidation="false"></asp:LinkButton>
-<%--                            <asp:LinkButton ID="lblLoginOrLogout" CssClass="btn head-btn2" runat="server" OnClick="lblLoginOrLogout_Click"CausesValidation="false"></asp:LinkButton>--%>
                                <asp:LinkButton ID="lblLoginOrLogout" CssClass="btn head-btn2" runat="server" OnClick="lblLoginOrLogout_Click" CausesValidation="false"></asp:LinkButton>
 
                                 

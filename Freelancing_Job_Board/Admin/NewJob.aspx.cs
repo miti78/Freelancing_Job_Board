@@ -84,22 +84,22 @@ namespace Freelancing_Job_Board.Admin
                     {
                         // Update existing job
                         query = @"UPDATE Jobs SET 
-                            Title = @Title, 
-                            NoOfPost = @NoOfPost, 
-                            Description = @Description, 
-                            Qualification = @Qualification, 
-                            Experience = @Experience, 
-                            Specialization = @Specialization, 
-                            LastDateToApply = @LastDateToApply, 
-                            Salary = @Salary, 
-                            JobType = @JobType, 
-                            CompanyName = @CompanyName, 
-                            Website = @Website, 
-                            Email = @Email, 
-                            Address = @Address, 
-                            Country = @Country, 
-                            State = @State 
-                          WHERE JobId = @JobId";
+                    Title = @Title, 
+                    NoOfPost = @NoOfPost, 
+                    Description = @Description, 
+                    Qualification = @Qualification, 
+                    Experience = @Experience, 
+                    Specialization = @Specialization, 
+                    LastDateToApply = @LastDateToApply, 
+                    Salary = @Salary, 
+                    JobType = @JobType, 
+                    CompanyName = @CompanyName, 
+                    Website = @Website, 
+                    Email = @Email, 
+                    Address = @Address, 
+                    Country = @Country, 
+                    State = @State 
+                  WHERE JobId = @JobId";
 
                         cmd = new SqlCommand(query, con);
                         cmd.Parameters.AddWithValue("@JobId", Convert.ToInt32(Request.QueryString["id"]));
@@ -108,11 +108,11 @@ namespace Freelancing_Job_Board.Admin
                     {
                         // Insert new job
                         query = @"INSERT INTO Jobs 
-                            (Title, NoOfPost, Description, Qualification, Experience, Specialization, LastDateToApply, 
-                             Salary, JobType, CompanyName, Website, Email, Address, Country, State, CreateDate) 
-                          VALUES 
-                            (@Title, @NoOfPost, @Description, @Qualification, @Experience, @Specialization, @LastDateToApply, 
-                             @Salary, @JobType, @CompanyName, @Website, @Email, @Address, @Country, @State, @CreateDate)";
+                    (Title, NoOfPost, Description, Qualification, Experience, Specialization, LastDateToApply, 
+                     Salary, JobType, CompanyName, CompanyImage, Website, Email, Address, Country, State, CreateDate) 
+                  VALUES 
+                    (@Title, @NoOfPost, @Description, @Qualification, @Experience, @Specialization, @LastDateToApply, 
+                     @Salary, @JobType, @CompanyName, @CompanyImage, @Website, @Email, @Address, @Country, @State, @CreateDate)";
 
                         cmd = new SqlCommand(query, con);
                         cmd.Parameters.AddWithValue("@CreateDate", DateTime.Now);
@@ -147,6 +147,20 @@ namespace Freelancing_Job_Board.Admin
                     cmd.Parameters.AddWithValue("@Country", ddlCountry.SelectedValue);
                     cmd.Parameters.AddWithValue("@State", txtState.Text.Trim());
 
+                    // Save the uploaded image
+                    if (fuCompanyLogo.HasFile)
+                    {
+                        string fileName = System.IO.Path.GetFileName(fuCompanyLogo.FileName);
+                        string filePath = Server.MapPath("~/Images/") + fileName;
+                        fuCompanyLogo.SaveAs(filePath);
+                        cmd.Parameters.AddWithValue("@CompanyImage", fileName); // Store the filename in the database
+                    }
+                    else
+                    {
+                        // If no file is uploaded, handle appropriately (set to null or existing filename)
+                        cmd.Parameters.AddWithValue("@CompanyImage", DBNull.Value);
+                    }
+
                     con.Open();
                     int rowsAffected = cmd.ExecuteNonQuery();
                     con.Close();
@@ -174,6 +188,7 @@ namespace Freelancing_Job_Board.Admin
                 lblMsg.Visible = true;
             }
         }
+
 
         private void ClearFields()
         {
