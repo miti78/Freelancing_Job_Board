@@ -72,6 +72,7 @@
     <Content Include="Admin\DownloadResume.aspx" />
     <Content Include="Admin\JobList.aspx" />
     <Content Include="Admin\NewJob.aspx" />
+    <Content Include="Admin\UserList.aspx" />
     <Content Include="Admin\ViewResumeDetails.aspx" />
     <Content Include="Admin\ViewResume.aspx" />
     <Content Include="assets\css\bootstrap.min.css" />
@@ -698,6 +699,13 @@
     <Compile Include="Admin\NewJob.aspx.designer.cs">
       <DependentUpon>NewJob.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\UserList.aspx.cs">
+      <DependentUpon>UserList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\UserList.aspx.designer.cs">
+      <DependentUpon>UserList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\ViewResumeDetails.aspx.cs">
       <DependentUpon>ViewResumeDetails.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -732,6 +740,7 @@
     </Compile>
     <Compile Include="User\BrowseJob.aspx.cs">
       <DependentUpon>BrowseJob.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="User\BrowseJob.aspx.designer.cs">
       <DependentUpon>BrowseJob.aspx</DependentUpon>

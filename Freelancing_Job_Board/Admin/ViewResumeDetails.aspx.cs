@@ -40,12 +40,6 @@ namespace Freelancing_Job_Board.Admin
                 }
             }
         }
-        // Example of encoding file content to Base64
-        public static string EncodeFileToBase64(string filePath)
-        {
-            byte[] fileBytes = File.ReadAllBytes(filePath);
-            return Convert.ToBase64String(fileBytes);
-        }
 
         private void ShowResume(int userId)
         {

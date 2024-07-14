@@ -105,15 +105,30 @@
                         </a>
                     </li>
                     <li class="nav-item">
-    <a href="Logout.aspx">
-        <i class="fas fa-sign-out-alt"></i>
-        <p>Logout</p>
-    </a>
-</li>
-
+                        <a href="UserList.aspx">
+                            <i class="fas fa-users"></i>
+                            <p>User List</p>
+                        </a>
+                    </li>
+                   <li class="nav-item">
+                     <a href="../User/Login.aspx">
+                        <i class="fas fa-sign-out-alt"></i>
+                          <p>Logout</p>
+                     </a>
+                    </li>
+                    <%--<form id="form1" runat="server" style="margin-right:10px">
+                    <div style="font-size:20px; color:white;margin-right:10px">
+                   <asp:LinkButton ID="btnLogout" runat="server" CssClass="nav-link" OnClick="btnLogout_Click">
+                           <i class="fas fa-sign-out-alt"></i>
+                           <p>Logout</p>
+                       </asp:LinkButton>
+              
+                     </div>
+                        </form>--%>
                 </ul>
             </div>
         </div>
+        
     </div>
 
     <div>
@@ -159,6 +174,21 @@
     <script src="../assets/js/demo.js"></script>--%>
 
     <script>
+        function logoutUser() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'Logout.aspx', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    window.location.href = '../User/Login.aspx';
+                } else {
+                    alert('Logout failed.');
+                }
+            };
+            xhr.send();
+            return false; // Prevent default link behavior
+        }
+
         $("#lineChart").sparkline([102, 109, 120, 99, 110, 105, 115], {
             type: "line",
             height: "70",

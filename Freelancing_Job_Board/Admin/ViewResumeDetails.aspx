@@ -11,7 +11,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <form id="form1" runat="server">
-        <div class="container mt-5 pt-4 pb-4"style="margin-left: 300px;">
+        <div class="container mt-5 pt-4 pb-4" style="margin-left: 300px;">
             <asp:Label ID="lblMsg" runat="server" CssClass="alert" Visible="false"></asp:Label>
             <h2 class="text-center mb-4">Resume Details</h2>
             <div class="row mb-3 pt-sm-3">

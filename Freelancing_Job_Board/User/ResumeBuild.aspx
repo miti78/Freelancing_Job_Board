@@ -21,8 +21,8 @@
                     <asp:Label ID="lblMsg" runat="server" Visible="false"></asp:Label>
                     <asp:Label ID="Label1" runat="server" CssClass="alert" Visible="false"></asp:Label>
 <asp:Label ID="lblResumeLink" runat="server" Visible="false"></asp:Label>
-<asp:FileUpload ID="FileUpload1" runat="server" />
-<asp:Button ID="Button1" runat="server" Text="Update" OnClick="btnUpdate_Click" />
+
+
 
                 </div>
                 <div class="col-12">
